@@ -22,6 +22,11 @@ This project is a simple weather forecast map built using **HTML**, **Bootstrap 
     - **Limitations**:
         - Up to 20 API calls per minute.
         - Up to 100 calls per minute.
+     
+
+## Diagram:
+
+![Diagram](https://github.com/GitExplorer001/Weather-APP/blob/main/Diagram.png)
 
 ## Important Notes:
 
@@ -37,8 +42,3 @@ This project is a simple weather forecast map built using **HTML**, **Bootstrap 
 This content is owned by **Anish Ghosh** ([GitHub Profile](https://github.com/GitExplorer001)) and is meant to be distributed for free. Any individual attempting to sell a copy may face consequences.
 
 © [github.com/GitExplorer001](https://github.com/GitExplorer001)
-
-
-![Diagram](https://github.com/GitExplorer001/Weather-APP/blob/main/Diagram.png)
-
-
