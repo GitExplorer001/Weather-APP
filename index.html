@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- spinner -->
+    <section id="loadingSpinnercontain" class="justify-content-center align-items-center">
+        <div class="spinner-border text-primary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </section>
+
+    <div class="container-fluid py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="text-center">Weather Forecast</h1>
+            <div>
+                <label class="theme-toggle" for="theme-toggle-checkbox">
+                    <input type="checkbox" id="theme-toggle-checkbox" />
+                    <span class="sr-only">Toggle dark mode</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="mb-4">
+            <form id="search-form" class="d-flex">
+                <input type="text" id="city" class="form-control me-2" placeholder="Enter city name">
+                <button type="submit" class="btn btn-primary" id="search"><i class="fa fa-search"></i></button>
+            </form>
+            <div id="suggestBox" class="bg-light border rounded shadow"></div>
+        </div>
+
+        <div class="row main-content h-100">
+            <div class="col-lg-6">
+                <div class="card h-100">
+                    <div class="weather-bg" id="weather-background"></div>
+                    <div class="row justify-content-between">
+                        <div class="col">
+                            <h1 id="city_name" class="display-3 px-3"><span class="heading_phone">Please search for Your city to get DATA</span></h1>
+                        </div>
+                        <!-- Icon and Summary -->
+                        <div class="col mx-4" style="margin-bottom: auto;" id="res_icon_phone">
+                            <img src="" width="50" id="icon1">
+                            <small id="summary1" class="d-block"></small>
+                        </div>
+                    </div>
+
+                    <!-- Weather Info Row -->
+                    <div class="row g-3 px-3">
+                        <!-- Temperature -->
+                        <div class="col">
+                            <h1 class="display-1 mb-0" id="temperature"></h1>
+                        </div>
+
+                        <!-- Timezone and Current Time -->
+                        <div class="col" style="margin-top: auto; padding-bottom: 0.5rem;">
+                            <div class="d-flex flex-column">
+                                <h2 class="h4 mb-0" id="timezone_"></h2>
+                                <small id="current-time"></small>
+                            </div>
+                        </div>
+
+                        <!-- Icon and Summary -->
+                        <div class="col" style="margin-bottom: auto;" id="res_icon_web">
+                            <img src="" width="50" id="icon">
+                            <small id="summary" class="d-block"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="row h-100">
+                    <!-- Additional Info Card -->
+                    <div class="col-lg-12 mb-4">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title h5 mb-0">Today's Details</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-6 mb-3">
+                                        <i class="fas fa-cloud me-2"></i>
+                                        <span>Cloudy: <span id="clouds"></span></span>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <i class="fas fa-tint me-2"></i>
+                                        <span>Humidity: <span id="humid"></span></span>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <i class="fas fa-thermometer-half me-2"></i>
+                                        <span>Rain: <span id="rain"></span></span>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <i class="fas fa-thermometer-half me-2"></i>
+                                        <span>Pressure: <span id="pres"></span></span>
+                                    </div>
+                                    <div class="col-6 mb-3">
+                                        <i class="fas fa-sun me-2"></i>
+                                        <span>UV Index: <span id="uv"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Wind Data Card -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title h5 mb-0">Wind</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <img src="" alt="" srcset="" id="direct_img" height="100px">
+                                    <div>
+                                        <p class="h3 mb-0" id="speed"></p>
+                                        <small id="gust"></small>
+                                        <p class="mb-0" id="dir1"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Hourly Forecast Carousel -->
+        <div class="card mb-4">
+            <div class="card-header">
+                <h2 class="card-title h5 mb-0">24 Hour Forecast</h2>
+            </div>
+            <div class="card-body">
+                <div id="hourlyCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="hourlyCarouselInner">
+                        <!-- Carousel items will be appended here dynamically -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#hourlyCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#hourlyCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Daily Forecast Carousel -->
+        <div class="card mb-4 mx-auto" id="daily-carousel">
+            <div class="card-header">
+                <h2 class="card-title h5 mb-0">7-Day Forecast</h2>
+            </div>
+            <div class="card-body">
+                <div id="dailyCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="daily-slider">
+                        <!-- data from js -->
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#dailyCarousel"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#dailyCarousel"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,233 @@
+body {
+    max-width: 1000px;
+    margin: auto;
+}
+
+#loadingSpinnercontain{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9999;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+#suggestBox {
+    visibility: hidden;
+    position: absolute; 
+    z-index: 1000;  
+    overflow-y: auto;
+}
+.suggestion {
+    padding: 10px;
+    cursor: pointer;
+}
+.suggestion:hover {
+    background-color: #f0f0f0;
+}
+
+.weather-icon {
+    font-size: 2rem;
+}
+
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 5%;
+    filter: invert(50%) sepia(100%) saturate(500%) hue-rotate(200deg) brightness(100%) contrast(100%);
+}
+
+.carousel-inner {
+    padding: 1rem 0;
+}
+
+.card {
+    height: 100%;
+}
+
+.theme-toggle {
+    width: 60px;
+    height: 30px;
+    background-color: #83d8ff;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle::before {
+    content: '☀️';
+    position: absolute;
+    top: 49%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.theme-toggle.dark {
+    background-color: #749dd6;
+}
+
+.theme-toggle.dark::before {
+    content: '🌙';
+    transform: translateY(-58%) translateX(23px);
+}
+
+#theme-toggle-checkbox {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+body.dark-mode {
+    background-color: #333;
+    color: #f0f0f0;
+}
+
+body.dark-mode .card {
+    background-color: #444;
+    color: #f0f0f0;
+}
+
+body.dark-mode .card-header {
+    background-color: #555;
+}
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    background-color: #fff;
+    bottom: 4px;
+    content: "";
+    height: 26px;
+    left: 4px;
+    position: absolute;
+    transition: .4s;
+    width: 26px;
+}
+
+input:checked+.slider {
+    background-color: #66bb6a;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+.weather-bg {
+    height: 125px;
+    border-radius: 5px;
+}
+
+#city_name {
+    margin-top: 10px;
+    /* Adjust margin */
+}
+
+.card-body {
+    padding: 1rem 1.25rem;
+    /* Reduced padding */
+}
+
+.row.g-3 {
+    gap: 1rem !important;
+    /* Adjust gap between elements */
+}
+
+#temperature {
+    font-size: 3rem;
+    /* Reduced font size */
+}
+
+#timezone_ {
+    font-size: 1rem;
+    /* Reduced font size */
+}
+
+#icon {
+    margin-top: 10px;
+    /* Adjust margin */
+}
+
+.col-lg-12 .card {
+    height: auto;
+    /* Remove fixed height */
+}
+
+@media screen and (max-width: 992px) {
+    .col-lg-6 {
+        margin-bottom: 20px;
+    }
+    
+}
+
+@media (min-width: 992px) {
+    .main-content {
+        margin-bottom: 20px;
+        overflow-y: auto;
+    }
+}
+
+@media (max-width: 768px) {
+    #daily-card {
+        width: 17rem;
+    }
+
+    #daily-carousel {
+        width: 23rem;
+    }
+    #res_icon_phone{
+        display: block;
+    }
+    #res_icon_web{
+        display: none;
+    }
+    .hour_phone{
+        font-size: 11px;
+    }
+    .heading_phone{
+        font-size: 20px;
+        display: block;
+        width: 100vw;
+    }
+}
+@media (min-width: 769px){
+    #res_icon_phone{
+        display: none;
+    }
+    #res_icon_web{
+        display: block;
+    }
+}
+
+@media (min-width: 970px) {
+    #daily-card {
+        width: 30rem;
+    }
+
+    #daily-carousel {
+        width: 40rem;
+    }
+}
